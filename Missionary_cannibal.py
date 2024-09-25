@@ -30,20 +30,54 @@ def get_successors(state):
 def bfs(start_state, goal_state):
     queue = deque([(start_state, [])])
     visited = set()
+    nodes_explored=0
+
     while queue:
         (state, path) = queue.popleft()
         if state in visited:
             continue
         visited.add(state)
+        nodes_explored += 1
         path = path + [state]
         if state == goal_state:
+            print('Total nodes explored with BFS:', nodes_explored)
             return path
         for successor in get_successors(state):
             queue.append((successor, path))
+
+    print('Total nodes explored with BFS:', nodes_explored)
     return None
 
+def dfs(start_state, goal_state):
+    stack = [(start_state, [])]  # Use a stack instead of a queue
+    visited = set()
+    nodes_explored=0
+    
+    while stack:
+        (state, path) = stack.pop()  # Pop the last item from the stack
+        if state in visited:
+            continue
+        visited.add(state)
+        nodes_explored += 1
+        path = path + [state]
+        
+        if state == goal_state:
+            print('Total nodes explored with DFS:', nodes_explored)
+            return path
+        
+        for successor in get_successors(state):
+            stack.append((successor, path))  # Push successors onto the stack
+            
+
+    print('Total nodes explored with DFS:', nodes_explored)
+    return None
+
+
+
+
+
 def display_solution(solution):
-    print("Initial State:")
+    print("Initial State: \n")
     print_state(solution[0])
     print("Solution Steps:\n")
     for step in solution[1:]:
@@ -63,9 +97,18 @@ def print_state(state):
 start_state = (3, 3, 1)
 goal_state = (0, 0, 0)
 
-solution = bfs(start_state, goal_state)
-if solution:
-    print("Solution found!")
-    display_solution(solution)
+solution_bfs = bfs(start_state, goal_state)
+solution_dfs=  dfs(start_state, goal_state)
+
+
+if solution_bfs:
+    print("Solution found with BFS:")
+    display_solution(solution_bfs)
 else:
-    print("No solution found.")
+    print("No solution found with BFS.")
+
+if solution_dfs:
+    print("Solution found with DFS:")
+    display_solution(solution_dfs)
+else:
+    print("No solution found with DFS.")
