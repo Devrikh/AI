@@ -107,7 +107,7 @@ for i in range(5):
     print(cost)
 assert len(ans) == 262144, "Output data is not the correct size!"
 
-with open('ans.mat', 'w') as file:
+with open('result_ans.mat', 'w') as file:
     for item in ans:
         file.write(f"{item}\n") 
 
