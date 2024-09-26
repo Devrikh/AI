@@ -17,24 +17,6 @@ def heuristic(node, goal_state):
              for val in node.state if val != 0)
     return h
 
-# def get_successors(node):
-#     successors = []
-#     index = node.state.index(0)
-#     row, col = divmod(index, 3)
-    
-#     # Possible moves: up, down, left, right
-#     moves = [(row-1, col), (row+1, col), (row, col-1), (row, col+1)]
-    
-#     for r, c in moves:
-#         if 0 <= r < 3 and 0 <= c < 3:
-#             new_index = r * 3 + c
-#             new_state = list(node.state)
-#             new_state[index], new_state[new_index] = new_state[new_index], new_state[index]
-#             h = heuristic(Node(new_state), goal_state)
-#             successor = Node(new_state, node, node.g + 1, h)
-#             successors.append(successor)
-#     return successors
-
 def get_successors(node):
     successors = []
     value = 0

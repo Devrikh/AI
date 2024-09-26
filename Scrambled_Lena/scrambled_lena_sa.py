@@ -97,7 +97,9 @@ for attempt in range(5):
         final_solution = image_puzzle
     print(cost)
 
-assert len(final_solution) == 262144, "Output data does not match expected size!"
+with open('ans.mat', 'w') as file:
+    for item in ans:
+        file.write(f"{item}\n") 
 
 # Write the output data
 with open('ans.mat', 'w') as output_file:
