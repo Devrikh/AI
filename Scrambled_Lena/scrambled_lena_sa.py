@@ -98,7 +98,7 @@ for attempt in range(5):
     print(cost)
 
 with open('ans.mat', 'w') as file:
-    for item in ans:
+    for item in solved_puzzle:
         file.write(f"{item}\n") 
 
 # Write the output data
