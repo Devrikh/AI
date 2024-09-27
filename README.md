@@ -1,4 +1,4 @@
-# AI Group 
+# AI Group
 
 ## Group Members
 
