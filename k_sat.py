@@ -3,7 +3,7 @@ import random
 class KSatProblem:
     def __init__(self, k, m, n):
         if k > n:
-            raise ValueError("k cannot be greater than n")
+            print("k cannot be greater than n")
         self.k = k
         self.m = m
         self.n = n
