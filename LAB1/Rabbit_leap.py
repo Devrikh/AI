@@ -63,16 +63,12 @@ def bfs(start_state, goal_state):
     
     while queue:
         node = queue.popleft()
-        # print(node.state)
         if tuple(node.state) in visited:  
             continue 
-        visited.add(tuple(node.state))      # if not visited , then adding it to visited
-        # print(node.state)
+        visited.add(tuple(node.state))      
         nodes_explored = nodes_explored + 1     
-        if node.state == list(goal_node.state):   #checking if goal state is reached
-            path = []                                #for keeping the path record
-            
-            #backtracing for path
+        if node.state == list(goal_node.state):   
+            path = []                               
             while node:                              
                 path.append(node.state)
                 node = node.parent
@@ -119,7 +115,6 @@ def print_state(state):
     print(' '.join(state))
     print()
 
-# Define the initial and goal states
 start_state = ('E', 'E', 'E', '.', 'W', 'W', 'W')
 goal_state = ('W', 'W', 'W', '.', 'E', 'E', 'E')
 

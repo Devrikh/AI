@@ -67,12 +67,12 @@ class KSatProblem:
         for clause in self.clauses:
             satisfied = False
             for var, sign in clause:
-                if sign:  # if the sign is True, check the variable itself
+                if sign:  
                     if assignment.get(var, False):
                         satisfied = True
                         break
-                else:  # if the sign is False, check the negation of the variable
-                    if not assignment.get(var, True):  # Treat missing variables as False
+                else: 
+                    if not assignment.get(var, True):  
                         satisfied = True
                         break
             if satisfied:
@@ -108,23 +108,23 @@ class KSatProblem:
         
         print(" ∧ ".join(clauses_strings))
 
-if __name__ == "__main__":
-    k = int(input("Enter the value for k (clause length): "))
-    m = int(input("Enter the value for m (number of clauses): "))
-    n = int(input("Enter the value for n (number of variables): "))
 
-    ksat = KSatProblem(k, m, n)
-    print("Generated k-SAT formula:")
-    ksat.print_formula()
+k = int(input("Enter the value for k (clause length): "))
+m = int(input("Enter the value for m (number of clauses): "))
+n = int(input("Enter the value for n (number of variables): "))
 
-    print("Solving using Backtracking...")
-    solution = ksat.backtracking()
-    print("Backtracking Solution:", solution)
+ksat = KSatProblem(k, m, n)
+print("Generated k-SAT formula:")
+ksat.print_formula()
 
-    print("Solving using Hill Climbing...")
-    solution = ksat.hill_climbing()
-    print("Hill Climbing Solution:", solution)
+print("Solving using Backtracking...")
+solution = ksat.backtracking()
+print("Backtracking Solution:", solution)
 
-    print("Solving using Beam Search...")
-    solution = ksat.beam_search()
-    print("Beam Search Solution:", solution)
+print("Solving using Hill Climbing...")
+solution = ksat.hill_climbing()
+print("Hill Climbing Solution:", solution)
+
+print("Solving using Beam Search...")
+solution = ksat.beam_search()
+print("Beam Search Solution:", solution)

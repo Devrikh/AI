@@ -49,12 +49,12 @@ def bfs(start_state, goal_state):
     return None
 
 def dfs(start_state, goal_state):
-    stack = [(start_state, [])]  # Use a stack instead of a queue
+    stack = [(start_state, [])] 
     visited = set()
     nodes_explored=0
     
     while stack:
-        (state, path) = stack.pop()  # Pop the last item from the stack
+        (state, path) = stack.pop() 
         if state in visited:
             continue
         visited.add(state)
@@ -66,7 +66,7 @@ def dfs(start_state, goal_state):
             return path
         
         for successor in get_successors(state):
-            stack.append((successor, path))  # Push successors onto the stack
+            stack.append((successor, path))  
             
 
     print('Total nodes explored with DFS:', nodes_explored)

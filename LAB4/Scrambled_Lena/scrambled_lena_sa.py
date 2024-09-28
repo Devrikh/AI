@@ -94,10 +94,6 @@ for i in range(5):
         final_solution = image_puzzle
     print(cost)
 
-with open('ans.mat', 'w') as file:
-    for item in solved_puzzle:
-        file.write(f"{item}\n") 
-
 with open('ans.mat', 'w') as output_file:
     for value in final_solution:
         output_file.write(f"{value}\n") 

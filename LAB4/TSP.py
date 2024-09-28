@@ -10,7 +10,6 @@ cities = [
     'Nathdwara', 'Pali'
 ]
 
-# Graph of the cities
 graph = {
     'Jaipur': {'Ajmer': 135, 'Alwar': 151, 'Bikaner': 334, 'Jodhpur': 600, 'Udaipur': 660, 'Mount Abu': 650},
     'Jodhpur': {'Pali': 75, 'Barmer': 200, 'Udaipur': 250, 'Jaipur': 600},
@@ -37,20 +36,17 @@ graph = {
 
 distances = defaultdict(lambda: defaultdict(lambda: float('inf')))
 
-# Fill in edge costs
 for city in cities:
-    distances[city][city] = 0  # Distance to itself is 0
+    distances[city][city] = 0  
     for neighbor, distance in graph.get(city, {}).items():
         distances[city][neighbor] = distance
 
-# Floyd-Warshall algorithm
 for k in cities:
     for i in cities:
         for j in cities:
             if distances[i][j] > distances[i][k] + distances[k][j]:
                 distances[i][j] = distances[i][k] + distances[k][j]
 
-# Distance matrix
 print("Distance Matrix:")
 for city in cities:
     print(f"{city}: {dict(distances[city])}")
@@ -60,7 +56,7 @@ def calculate_tour_cost(tour, distances):
     total_cost = 0
     for i in range(len(tour)):
         current_city = tour[i]
-        next_city = tour[(i + 1) % len(tour)]  # Wrap around to the start to complete the tour
+        next_city = tour[(i + 1) % len(tour)]  
         cost = distances[current_city][next_city]
         total_cost += cost
         
@@ -80,29 +76,24 @@ def simulated_annealing(cities, distances, initial_temp, cooling_rate):
     best_cost = current_cost
 
     while temp > 1:
-        # Create a new solution by swapping two cities
         new_solution = current_solution[:]
         i, j = random.sample(range(len(cities)), 2)
         new_solution[i], new_solution[j] = new_solution[j], new_solution[i]
 
         new_cost = calculate_tour_cost(new_solution, distances)
 
-        # Decide whether to accept the new solution
         if new_cost < current_cost or random.uniform(0, 1) < math.exp((current_cost - new_cost) / temp):
             current_solution = new_solution[:]
             current_cost = new_cost
 
-            # Update best solution
             if current_cost < best_cost:
                 best_solution = current_solution[:]
                 best_cost = current_cost
 
-        # Cool down
         temp *= cooling_rate
 
     return best_solution, best_cost
 
-# Parameters
 initial_temp = 10000
 cooling_rate = 0.995
 

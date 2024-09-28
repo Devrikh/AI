@@ -5,9 +5,9 @@ class Node:
     def __init__(self, state, parent=None, g=0, h=0):
         self.state = state
         self.parent = parent
-        self.g = g  # distance to root
-        self.h = h  # estimated distance to goal
-        self.f = g + h  # evaluation function
+        self.g = g  
+        self.h = h  
+        self.f = g + h 
 
     def __lt__(self, other):
         return self.f < other.f
@@ -79,7 +79,7 @@ def construct_path(node):
     while node:
         path.append(node.state)
         node = node.parent
-    return path  # Return reversed path
+    return path 
 
 def generate_puzzle_at_depth(start_state, depth):
     current_state = start_state[:]
@@ -88,12 +88,10 @@ def generate_puzzle_at_depth(start_state, depth):
         current_state = random.choice(successors).state
     return current_state
 
-# Example usage
 start_state = [1, 2, 3, 4, 5, 6, 7, 8, 0]
 depth_limit = 20
-goal_state = [1, 2, 3, 4, 5, 6, 7, 8, 0]  # Define a goal state
+goal_state = [1, 2, 3, 4, 5, 6, 7, 8, 0] 
 
-# Generate a random goal state at a specific depth
 for d in range(depth_limit + 1):
     goal_state = generate_puzzle_at_depth(start_state, d)
 
