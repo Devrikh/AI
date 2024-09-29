@@ -83,7 +83,7 @@ def construct_path(node):
 
 def generate_puzzle_at_depth(start_state, depth):
     current_state = start_state[:]
-    for _ in range(depth):
+    for i in range(depth):
         successors = get_successors(Node(current_state))
         current_state = random.choice(successors).state
     return current_state
