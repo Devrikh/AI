@@ -1,4 +1,4 @@
-# AI Group
+# DIAA - AI Group
 
 ## Group Members
 
