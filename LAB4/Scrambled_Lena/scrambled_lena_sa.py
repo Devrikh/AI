@@ -35,7 +35,7 @@ def swap_pieces(image_data):
     return image_data
 
 def simulated_annealing(initial_image, initial_temp, cooling_rate, final_temp):
-    lowest_cost = float('inf')
+    min_cost = float('inf')
     best_state = []
     temperature = initial_temp
     current_image = initial_image
@@ -47,8 +47,8 @@ def simulated_annealing(initial_image, initial_temp, cooling_rate, final_temp):
         if new_cost < current_cost:
             current_image = new_image
             current_cost = new_cost
-            if current_cost < lowest_cost:
-                lowest_cost = current_cost
+            if current_cost < min_cost:
+                min_cost = current_cost
                 best_state = current_image.copy()
         else:
             if random.uniform(0, 1) < math.exp((current_cost - new_cost) / temperature):
@@ -57,7 +57,7 @@ def simulated_annealing(initial_image, initial_temp, cooling_rate, final_temp):
         
         temperature *= cooling_rate
     
-    return best_state, lowest_cost
+    return best_state, min_cost
 
 
 def display_image(file_path):
