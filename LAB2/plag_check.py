@@ -37,16 +37,14 @@ def a_star_search(doc1_sentences, doc2_sentences):
         remaining_doc2 = sum(len(sentence) for sentence in doc2_sentences[j:])
         return min(remaining_doc1, remaining_doc2)
 
-    # Initial state: first sentence in both documents, zero cost
-    start_state = (0, 0, 0)  # (index in doc1, index in doc2, accumulated cost)
-    frontier = [(0, start_state)]  # Priority queue: (estimated total cost, state)
+    start_state = (0, 0, 0)  
+    frontier = [(0, start_state)]  
     visited = set()
     alignments = []
 
     while frontier:
         estimated_cost, (i, j, cost) = heappop(frontier)
 
-        # Goal state: all sentences aligned
         if i == len(doc1_sentences) and j == len(doc2_sentences):
             return alignments
 
@@ -54,7 +52,6 @@ def a_star_search(doc1_sentences, doc2_sentences):
             continue
         visited.add((i, j))
 
-        # Transition: align, skip doc1 sentence, skip doc2 sentence
         if i < len(doc1_sentences) and j < len(doc2_sentences):
             new_cost = cost + levenshtein_distance(doc1_sentences[i], doc2_sentences[j])
             heappush(frontier, (new_cost + heuristic(i + 1, j + 1), (i + 1, j + 1, new_cost)))
@@ -62,11 +59,11 @@ def a_star_search(doc1_sentences, doc2_sentences):
 
         if i < len(doc1_sentences):
             heappush(frontier, (cost + heuristic(i + 1, j), (i + 1, j, cost)))
-            alignments.append((doc1_sentences[i], ""))  # Skip sentence in doc2
+            alignments.append((doc1_sentences[i], ""))  
 
         if j < len(doc2_sentences):
             heappush(frontier, (cost + heuristic(i, j + 1), (i, j + 1, cost)))
-            alignments.append(("", doc2_sentences[j]))  # Skip sentence in doc1
+            alignments.append(("", doc2_sentences[j]))  
 
     return alignments
 
