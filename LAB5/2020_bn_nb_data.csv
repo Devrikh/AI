@@ -1,0 +1,7 @@
+EC100,IT101,MA101,PH100,Internship_Qualification
+DD,CC,CD,BB,Yes
+BB,DD,CC,CC,No
+CC,CD,BB,DD,Yes
+AA,BB,AA,CC,Yes
+CD,CC,DD,BB,No
+DD,DD,CC,AA,Yes
